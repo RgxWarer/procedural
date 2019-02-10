@@ -111,3 +111,16 @@ def perimeter_sphere(shape):
 
 def perimeter_parr(shape):
     return int(shape['width'])*int(shape['height'])*int(shape['length'])*4
+
+
+def compare(shape0, shape1):
+    return perimeter(shape0) < perimeter(shape1)
+
+
+def sort(c):
+    c['shapes_list'].reverse()
+    n = len(c['shapes_list'])
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if compare(c['shapes_list'][j], c['shapes_list'][j+1]):
+                c['shapes_list'][j], c['shapes_list'][j+1] = c['shapes_list'][j+1], c['shapes_list'][j]
