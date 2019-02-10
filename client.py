@@ -9,9 +9,11 @@ def main():
     input_name = sys.argv[1]
     output_name = sys.argv[2]
 
-    logic.input_shapes(input_name)
+    c = logic.init()
+    logic.inp(c, input_name)
+    logic.out(c, output_name)
 
-    logic.output_shapes(output_name)
+    logic.clear(c, output_name)
 
 
 if __name__ == '__main__':
