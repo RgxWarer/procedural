@@ -1,6 +1,7 @@
 container = None
-# parr_keys = ['height', 'width', 'length', 'density']
+parr_keys = ['height', 'width', 'length', 'density']
 sphere_keys = ['radius', 'density']
+
 
 
 def init():
@@ -45,8 +46,10 @@ def out(c, file_name):
 def output_shape(file, shape):
     if list(shape.keys()) == sphere_keys:
        output_sphere(file, shape)
+    elif list(shape.keys()) == parr_keys:
+       output_parr(file, shape)
     else:
-        output_parr(file, shape)
+        output_tetr(file, shape)
 
 
 def output_sphere(file, shape):
@@ -59,11 +62,17 @@ def output_parr(file, shape):
                 "d = " + shape['density'] + "\n")
 
 
+def output_tetr(file, shape):
+    file.write("It's tetrahedron: a = " + shape['a'] + ", d = " + shape['density'] + "\n")
+
+
 def input_shape(c, shape_type, param):
     if int(shape_type) == 1:
         input_parr(c, param)
     elif int(shape_type) == 2:
         input_sphere(c, param)
+    elif int(shape_type) == 3:
+        input_tetrahedron(c, param)
     else:
         return print("Ошибка в формате записи данных в файле.")
 
@@ -86,6 +95,15 @@ def input_sphere(c, param):
         'density': param[1]
     }
     c['shapes_list'].append(sphere)
+
+
+def input_tetrahedron(c, param):
+    param[1].strip()
+    tetrahedron = {
+        'a': param[0],
+        'density': param[1]
+    }
+    c['shapes_list'].append(tetrahedron)
 
 
 def input_shapes(file_name):
