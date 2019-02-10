@@ -1,11 +1,7 @@
 Container's length = 5
-0 : It's parallelepiped: h = 22, w = 22, l = 22, d = 2222222222222
-1 : It's parallelepiped: h = 86, w = 11, l = 34, d = 56
-
-2 It's sphere: r = 296, d = 345
-
-3 It's sphere: r = 275, d = 45
-
-4 : It's parallelepiped: h = 78, w = 134, l = 267, d = 903400000000000
-
+0 : It's parallelepiped: h = 22, w = 22, l = 22, d = 2222222222222 | perimeter: 42592
+1 : It's parallelepiped: h = 86, w = 11, l = 34, d = 56 | perimeter: 128656
+2 It's sphere: r = 296, d = 345 | perimeter: 1859.768
+3 It's sphere: r = 275, d = 45 | perimeter: 1727.825
+4 : It's parallelepiped: h = 78, w = 134, l = 267, d = 903400000000000 | perimeter: 11162736
 Empty container 0

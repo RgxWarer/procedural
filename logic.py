@@ -39,24 +39,25 @@ def out(c, file_name):
         shape = c['shapes_list'].pop()
         output_file.write(str(s - c['size']) + " ")
         output_shape(output_file, shape)
+        output_file.write("perimeter: " + str(perimeter(shape)) + "\n")
         c['size'] -= 1
 
 
 def output_shape(file, shape):
     if list(shape.keys()) == sphere_keys:
-       output_sphere(file, shape)
+        output_sphere(file, shape)
     else:
         output_parr(file, shape)
 
 
 def output_sphere(file, shape):
-    file.write("It's sphere: r = " + shape['radius'] + ", d = " + shape['density'] + "\n")
+    file.write("It's sphere: r = " + shape['radius'] + ", d = " + shape['density'].strip() + " | ")
 
 
 def output_parr(file, shape):
     file.write(": It's parallelepiped: h = " + shape['height'] + ", "
                 "w = " + shape['width'] + ", l = " + shape['length'] + ", "
-                "d = " + shape['density'] + "\n")
+                "d = " + shape['density'].strip() + " | ")
 
 
 def input_shape(c, shape_type, param):
@@ -69,7 +70,6 @@ def input_shape(c, shape_type, param):
 
 
 def input_parr(c, param):  # создаем функцию ввода параллелепипеда
-    param[3].strip()
     parr = {  # словарь с параметрами параллелепипеда
         'height': param[0],
         'width': param[1],
@@ -80,7 +80,6 @@ def input_parr(c, param):  # создаем функцию ввода парал
 
 
 def input_sphere(c, param):
-    param[1].strip()
     sphere = {
         'radius': param[0],
         'density': param[1]
@@ -97,3 +96,18 @@ def input_shapes(file_name):
 
     for line in file:
         inp(container, line, file.readline().split(" "))
+
+
+def perimeter(shape):
+    if list(shape.keys()) == sphere_keys:
+        return perimeter_sphere(shape)
+    else:
+        return perimeter_parr(shape)
+
+
+def perimeter_sphere(shape):
+    return 3.1415 * 2 * int(shape['radius'])
+
+
+def perimeter_parr(shape):
+    return int(shape['width'])*int(shape['height'])*int(shape['length'])*4
