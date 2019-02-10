@@ -52,6 +52,8 @@ def out_sphere(c, file_name):
         output_file.write(str(s - c['size']) + " ")
         if list(shape.keys()) == sphere_keys:
             output_sphere(output_file, shape)
+        else:
+            output_file.write("\n")
         c['size'] -= 1
 
 

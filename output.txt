@@ -1,7 +1,10 @@
 Container's length = 5
 Only spheres
-0 1 2 It's sphere: r = 296, d = 345
+0 
+1 
+2 It's sphere: r = 296, d = 345
 
 3 It's sphere: r = 275, d = 45
 
-4 Empty container 0
+4 
+Empty container 0
