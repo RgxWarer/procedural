@@ -42,6 +42,19 @@ def out(c, file_name):
         c['size'] -= 1
 
 
+def out_sphere(c, file_name):
+    output_file = open(file_name, 'w')
+    output_file.write("Container's length = " + str(c['size']) + "\n")
+    output_file.write("Only spheres" + "\n")
+    s = c['size']
+    while c['size'] != 0:
+        shape = c['shapes_list'].pop()
+        output_file.write(str(s - c['size']) + " ")
+        if list(shape.keys()) == sphere_keys:
+            output_sphere(output_file, shape)
+        c['size'] -= 1
+
+
 def output_shape(file, shape):
     if list(shape.keys()) == sphere_keys:
        output_sphere(file, shape)
