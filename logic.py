@@ -1,6 +1,6 @@
 container = None
 # parr_keys = ['height', 'width', 'length', 'density']
-sphere_keys = ['radius', 'density']
+sphere_keys = ['radius', 'density', 'temperature']
 
 
 def init():
@@ -44,19 +44,20 @@ def out(c, file_name):
 
 def output_shape(file, shape):
     if list(shape.keys()) == sphere_keys:
-       output_sphere(file, shape)
+        output_sphere(file, shape)
     else:
         output_parr(file, shape)
 
 
 def output_sphere(file, shape):
-    file.write("It's sphere: r = " + shape['radius'] + ", d = " + shape['density'] + "\n")
+    file.write(": It's sphere: r = " + shape['radius'] + ", d = " + shape['density'] +
+               ", t = " + shape['temperature'] + "\n")
 
 
 def output_parr(file, shape):
     file.write(": It's parallelepiped: h = " + shape['height'] + ", "
                 "w = " + shape['width'] + ", l = " + shape['length'] + ", "
-                "d = " + shape['density'] + "\n")
+                "d = " + shape['density'] + ", t = " + shape['temperature'] + "\n")
 
 
 def input_shape(c, shape_type, param):
@@ -69,21 +70,21 @@ def input_shape(c, shape_type, param):
 
 
 def input_parr(c, param):  # создаем функцию ввода параллелепипеда
-    param[3].strip()
     parr = {  # словарь с параметрами параллелепипеда
         'height': param[0],
         'width': param[1],
         'length': param[2],
-        'density': param[3]
+        'density': param[3],
+        'temperature': param[4].strip()
     }
     c['shapes_list'].append(parr)
 
 
 def input_sphere(c, param):
-    param[1].strip()
     sphere = {
         'radius': param[0],
-        'density': param[1]
+        'density': param[1],
+        'temperature': param[2].strip()
     }
     c['shapes_list'].append(sphere)
 
