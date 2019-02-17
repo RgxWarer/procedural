@@ -1,8 +1,7 @@
-Container's length = 6
-0 It's tetrahedron: a = 111, d = 9999 | square: 192.25763964014536
-1 It's sphere: r = 5, d = 6 | square: 314.15000000000003
-2 It's parallelepiped: h = 9, w = 10, l = 11, d = 12 | square: 598
-3 It's parallelepiped: h = 12, w = 14, l = 15, d = 16 | square: 1116
-4 It's parallelepiped: h = 1, w = 2, l = 300, d = 400 | square: 1804
-5 It's sphere: r = 296, d = 345 | square: 1100982.656
+Container's length = 5
+0 It's parallelepiped: h = 22, w = 22, l = 22, d = 222, t = 100 | square: 2904
+1 It's parallelepiped: h = 86, w = 11, l = 34, d = 56, t = 100 | square: 8488
+2 It's parallelepiped: h = 78, w = 134, l = 267, d = 903400, t = 100 | square: 134112
+3 : It's sphere: r = 275, d = 45, t = 99 | square: 950303.75
+4 : It's sphere: r = 296, d = 345, t = 44 | square: 1100982.656
 Empty container 0
