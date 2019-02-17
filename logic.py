@@ -1,3 +1,5 @@
+import math
+
 container = None
 parr_keys = ['height', 'width', 'length', 'density']
 sphere_keys = ['radius', 'density']
@@ -39,6 +41,7 @@ def out(c, file_name):
         shape = c['shapes_list'].pop()
         output_file.write(str(s - c['size']) + " ")
         output_shape(output_file, shape)
+        output_file.write("square: " + str(square(shape)) + "\n")
         c['size'] -= 1
 
 
@@ -52,17 +55,17 @@ def output_shape(file, shape):
 
 
 def output_sphere(file, shape):
-    file.write("It's sphere: r = " + shape['radius'] + ", d = " + shape['density'] + "\n")
+    file.write("It's sphere: r = " + shape['radius'] + ", d = " + shape['density'].strip() + " | ")
 
 
 def output_parr(file, shape):
-    file.write(": It's parallelepiped: h = " + shape['height'] + ", "
+    file.write("It's parallelepiped: h = " + shape['height'] + ", "
                 "w = " + shape['width'] + ", l = " + shape['length'] + ", "
-                "d = " + shape['density'] + "\n")
+                "d = " + shape['density'].strip() + " | ")
 
 
 def output_tetr(file, shape):
-    file.write("It's tetrahedron: a = " + shape['a'] + ", d = " + shape['density'] + "\n")
+    file.write("It's tetrahedron: a = " + shape['a'] + ", d = " + shape['density'].strip() + " | ")
 
 
 def input_shape(c, shape_type, param):
@@ -77,7 +80,6 @@ def input_shape(c, shape_type, param):
 
 
 def input_parr(c, param):  # создаем функцию ввода параллелепипеда
-    param[3].strip()
     parr = {  # словарь с параметрами параллелепипеда
         'height': param[0],
         'width': param[1],
@@ -88,7 +90,6 @@ def input_parr(c, param):  # создаем функцию ввода парал
 
 
 def input_sphere(c, param):
-    param[1].strip()
     sphere = {
         'radius': param[0],
         'density': param[1]
@@ -114,3 +115,37 @@ def input_shapes(file_name):
 
     for line in file:
         inp(container, line, file.readline().split(" "))
+
+
+def square(shape):
+    if list(shape.keys()) == sphere_keys:
+        return square_sphere(shape)
+    elif list(shape.keys()) == parr_keys:
+        return square_parr(shape)
+    else:
+        return square_tetr(shape)
+
+
+def square_sphere(shape):
+    return 3.1415*4*int(shape['radius'])*int(shape['radius'])
+
+
+def square_parr(shape):
+    return (int(shape['width'])*int(shape['length']) + int(shape['length'])*int(shape['height']) + int(shape['width'])*int(shape['height']))*2
+
+
+def square_tetr(shape):
+    return math.sqrt(3)*int(shape['a'])
+
+
+def compare(shape0, shape1):
+    return square(shape0) < square(shape1)
+
+
+def sort(c):
+    c['shapes_list'].reverse()
+    n = len(c['shapes_list'])
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if compare(c['shapes_list'][j], c['shapes_list'][j+1]):
+                c['shapes_list'][j], c['shapes_list'][j+1] = c['shapes_list'][j+1], c['shapes_list'][j]
