@@ -45,6 +45,22 @@ def out(c, file_name):
         c['size'] -= 1
 
 
+def out_sphere(c, file_name):
+    output_file = open(file_name, 'w')
+    output_file.write("Container's length = " + str(c['size']) + "\n")
+    output_file.write("Only spheres" + "\n")
+    s = c['size']
+    while c['size'] != 0:
+        shape = c['shapes_list'].pop()
+        output_file.write(str(s - c['size']) + " ")
+        if list(shape.keys()) == sphere_keys:
+            output_sphere(output_file, shape)
+            output_file.write("square: " + str(square(shape)) + "\n")
+        else:
+            output_file.write("\n")
+        c['size'] -= 1
+
+
 def output_shape(file, shape):
     if list(shape.keys()) == sphere_keys:
         output_sphere(file, shape)
@@ -67,7 +83,7 @@ def output_parr(file, shape):
 
 def output_tetr(file, shape):
     file.write("It's tetrahedron: a = " + shape['a'] + ", d = " + shape['density'].strip() +
-               ", t=" + shape['temperature']  + " | ")
+               ", t=" + shape['temperature'] + " | ")
 
 
 def input_shape(c, shape_type, param):
@@ -105,7 +121,8 @@ def input_tetrahedron(c, param):
     param[1].strip()
     tetrahedron = {
         'a': param[0],
-        'density': param[1]
+        'density': param[1],
+        'temperature': param[2].strip()
     }
     c['shapes_list'].append(tetrahedron)
 

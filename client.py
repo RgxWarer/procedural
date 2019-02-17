@@ -12,7 +12,8 @@ def main():
     c = logic.init()
     logic.inp(c, input_name)
     logic.sort(c)
-    logic.out(c, output_name)
+    # logic.out(c, output_name)
+    logic.out_sphere(c, output_name)
 
     logic.clear(c, output_name)
 
