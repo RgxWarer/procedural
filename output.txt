@@ -1,9 +1,10 @@
-Container's length = 6
+Container's length = 9
 Only spheres
 0 
 1 
 2 
-3 
-4 : It's sphere: r = 275, d = 45, t = 99 | square: 950303.75
-5 : It's sphere: r = 296, d = 345, t = 44 | square: 1100982.656
-Empty container 0
+3 : It's sphere: r = 2, d = 2, t = 2 | square: 50.264
+4 
+5 
+6 : It's sphere: r = 275, d = 45, t = 99 | square: 950303.75
+7 : It's sphere: r = 296, d = 345, t = 44 | square: 1100982.656

@@ -11,7 +11,6 @@ def init():
         'shapes_list': shapes_list,
         'size': 0
     }
-
     return container
 
 
@@ -105,6 +104,12 @@ def input_parr(c, param):  # создаем функцию ввода парал
         'density': param[3],
         'temperature': param[4].strip()
     }
+
+    for par in parr:
+        if parr[par].isdigit or (int(parr[par]) <= 0):
+            print("Введены неверные параметры параллелепипеда.")
+            quit()
+
     c['shapes_list'].append(parr)
 
 
@@ -114,6 +119,10 @@ def input_sphere(c, param):
         'density': param[1],
         'temperature': param[2].strip()
     }
+    for par in sphere:
+        if sphere[par].isdigit or (int(sphere[par]) <= 0):
+            print("Введены неверные параметры сферы.")
+            quit()
     c['shapes_list'].append(sphere)
 
 
@@ -124,6 +133,10 @@ def input_tetrahedron(c, param):
         'density': param[1],
         'temperature': param[2].strip()
     }
+    for par in tetrahedron:
+        if tetrahedron[par].isdigit or (int(tetrahedron[par]) <= 0):
+            print("Введены неверные параметры тетраэдра.")
+            quit()
     c['shapes_list'].append(tetrahedron)
 
 
