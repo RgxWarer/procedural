@@ -3,18 +3,18 @@ import logic
 
 
 def main():
-    if len(sys.argv) != 3:
-        return print("Вы не ввели нужные аргументы.")
+  #  if len(sys.argv) != 3:
+  #      return print("Вы не ввели нужные аргументы.")
 
-    input_name = sys.argv[1]
-    output_name = sys.argv[2]
+    input_name = "input.txt"# sys.argv[1]
+    output_name = "output.txt"# sys.argv[2]
 
     c = logic.init()
-    logic.inp(c, input_name)
-    logic.sort(c)
-    logic.out_sphere(c, output_name)
-
-    logic.clear(c, output_name)
+    if not logic.inp(c, input_name):
+        return
+    r = logic.sort(c)
+    logic.out_sphere(r, output_name)
+   # logic.clear(r, output_name)
 
 
 if __name__ == '__main__':
