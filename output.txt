@@ -1,8 +1,19 @@
-Container's length = 4
-0: It's parallelepiped: h = 86, w = 11, l = 34, d = 56
-1: It's sphere: r = 296, d = 345
-2: It's sphere: r = 275, d = 45
-3: It's parallelepiped: h = 78, w = 134, l = 267, d = 9034
-
-Empty container
-Container contains 0
+Multimethod
+Parr and sphere.
+0: It's parallelepiped: h = 78, w = 134, l = 267, d = 9034
+1: It's sphere: r = 275, d = 45
+Parr and sphere.
+0: It's parallelepiped: h = 78, w = 134, l = 267, d = 9034
+2: It's sphere: r = 296, d = 345
+Parr and parr
+0: It's parallelepiped: h = 78, w = 134, l = 267, d = 9034
+3: It's parallelepiped: h = 86, w = 11, l = 34, d = 56
+Sphere and sphere
+1: It's sphere: r = 275, d = 45
+2: It's sphere: r = 296, d = 345
+Sphere and parr
+1: It's sphere: r = 275, d = 45
+3: It's parallelepiped: h = 86, w = 11, l = 34, d = 56
+Sphere and parr
+2: It's sphere: r = 296, d = 345
+3: It's parallelepiped: h = 86, w = 11, l = 34, d = 56
