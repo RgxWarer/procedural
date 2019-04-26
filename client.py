@@ -1,5 +1,6 @@
 import sys
-import logic
+from logic import init, inp, sort, out_sphere, clear, out
+
 
 
 def main():
@@ -9,12 +10,12 @@ def main():
     input_name = sys.argv[1]
     output_name = sys.argv[2]
 
-    c = logic.init()
-    logic.inp(c, input_name)
-    logic.sort(c)
-    logic.out_sphere(c, output_name)
+    c = init()
+    inp(c, input_name)
+    sort(c)
+    out(c, output_name)
 
-    logic.clear(c, output_name)
+    clear(c, output_name)
 
 
 if __name__ == '__main__':

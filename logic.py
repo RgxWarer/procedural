@@ -1,6 +1,5 @@
 import math
 
-container = None
 parr_keys = ['height', 'width', 'length', 'density', 'temperature']
 sphere_keys = ['radius', 'density', 'temperature']
 
@@ -22,13 +21,15 @@ def inp(c, file_name):
         return print("Файл с данными не найден.")
 
     for line in file:
-        input_shape(c, line, file.readline().split(" "))
+        input_shape(c, line.strip(), file.readline().strip().split(" "))
         c['size'] += 1
+    file.close()
 
 
 def clear(c, file):
     output_file = open(file, 'a')
     output_file.write("Empty container " + str(c['size']))
+    output_file.close()
 
 
 def out(c, file_name):
@@ -42,6 +43,7 @@ def out(c, file_name):
         output_shape(output_file, shape)
         output_file.write("square: " + str(square(shape)) + "\n")
         c['size'] -= 1
+    output_file.close()
 
 
 def out_sphere(c, file_name):
@@ -58,6 +60,7 @@ def out_sphere(c, file_name):
         else:
             output_file.write("\n")
         c['size'] -= 1
+    output_file.close()
 
 
 def output_shape(file, shape):
@@ -70,18 +73,18 @@ def output_shape(file, shape):
 
 
 def output_sphere(file, shape):
-    file.write(": It's sphere: r = " + shape['radius'] + ", d = " + shape['density'].strip() +
+    file.write(": It's sphere: r = " + shape['radius'] + ", d = " + shape['density'] +
                ", t = " + shape['temperature'] + " | ")
 
 
 def output_parr(file, shape):
-    file.write("It's parallelepiped: h = " + shape['height'] + ", "
+    file.write(": It's parallelepiped: h = " + shape['height'] + ", "
                 "w = " + shape['width'] + ", l = " + shape['length'] + ", "
-                "d = " + shape['density'].strip() + ", t = " + shape['temperature']  + " | ")
+                "d = " + shape['density'] + ", t = " + shape['temperature']  + " | ")
 
 
 def output_tetr(file, shape):
-    file.write("It's tetrahedron: a = " + shape['a'] + ", d = " + shape['density'].strip() +
+    file.write(": It's tetrahedron: a = " + shape['a'] + ", d = " + shape['density'] +
                ", t=" + shape['temperature'] + " | ")
 
 
@@ -102,11 +105,11 @@ def input_parr(c, param):  # создаем функцию ввода парал
         'width': param[1],
         'length': param[2],
         'density': param[3],
-        'temperature': param[4].strip()
+        'temperature': param[4]
     }
 
     for par in parr:
-        if parr[par].isdigit or (int(parr[par]) <= 0):
+        if not parr[par].isdigit and (int(parr[par]) > 0):
             print("Введены неверные параметры параллелепипеда.")
             quit()
 
@@ -117,38 +120,26 @@ def input_sphere(c, param):
     sphere = {
         'radius': param[0],
         'density': param[1],
-        'temperature': param[2].strip()
+        'temperature': param[2]
     }
     for par in sphere:
-        if sphere[par].isdigit or (int(sphere[par]) <= 0):
+        if not sphere[par].isdigit or (int(sphere[par]) <= 0):
             print("Введены неверные параметры сферы.")
             quit()
     c['shapes_list'].append(sphere)
 
 
 def input_tetrahedron(c, param):
-    param[1].strip()
     tetrahedron = {
         'a': param[0],
         'density': param[1],
-        'temperature': param[2].strip()
+        'temperature': param[2]
     }
     for par in tetrahedron:
-        if tetrahedron[par].isdigit or (int(tetrahedron[par]) <= 0):
+        if not tetrahedron[par].isdigit or (int(tetrahedron[par]) <= 0):
             print("Введены неверные параметры тетраэдра.")
             quit()
     c['shapes_list'].append(tetrahedron)
-
-
-def input_shapes(file_name):
-    try:
-        file = open(file_name)
-
-    except OSError:
-        return print("Файл с данными не найден.")
-
-    for line in file:
-        inp(container, line, file.readline().split(" "))
 
 
 def square(shape):
@@ -165,7 +156,8 @@ def square_sphere(shape):
 
 
 def square_parr(shape):
-    return (int(shape['width'])*int(shape['length']) + int(shape['length'])*int(shape['height']) + int(shape['width'])*int(shape['height']))*2
+    return (int(shape['width'])*int(shape['length']) + int(shape['length'])*int(shape['height']) + int(shape['width']) *
+            int(shape['height']))*2
 
 
 def square_tetr(shape):
